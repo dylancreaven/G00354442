@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-
+import { CurrencyRatesProvider } from '../../providers/currency-rates/currency-rates';
+import {Storage} from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -9,43 +9,121 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'converter.html',
 })
 
-export class ConverterPage {
- changingFrom:string;
- changingTo:String;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+export class ConverterPage 
+{
+ currency:any=[];
+ amount:number; 
+ hidden:boolean=true;
+ changingTo:string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private currencyRatesProvider: CurrencyRatesProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConverterPage');
-  }
-  
-
-  onSave(){
-    console.log(this.changingFrom+" "+this.changingTo);
-
-    this.storage.set("changingFrom",this.changingFrom);
-    this.storage.set("changingTo",this.changingTo);
+    
     }
-    ionViewWillEnter(){
-      this.storage.get("changingFrom").then((data) => {
-          this.changingFrom=data;
-      })
-        .catch((err) => {
-          console.log("Error = " + err);
-        })
-
-
-        this.storage.get("changingTo").then((data) => {
-          this.changingTo=data;
-      })
-        .catch((err) => {
-          console.log("Error = " + err);
-        })
   
+    onConvert()
+    {
+      
+      if(this.currency=="usd")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="United States Dollars";
+          this.amount=info.rates.USD;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="sek")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Swedish Krona";
+          this.amount=info.rates.SEK;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="gbp")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Great British Sterling";
+          this.amount=info.rates.GBP;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="rub")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Russian Rubles";
+          this.amount=info.rates.RUB;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="aud")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Austrailian Dollars";
+          this.amount=info.rates.AUD;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="cad")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Canadian Dollars";
+          this.amount=info.rates.CAD;
+          console.log(this.currency);
+    
+        })
+      }
+      else if(this.currency=="jpy")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          this.storage.set("changingTo",this.changingTo);
+          this.changingTo="Japanese Yen";
+          this.amount=info.rates.JPY;
+          console.log(this.currency);
+    
+        })
+      }
+      
+      
     }
-
-
-
 }
+
+     
+  
+
+    
+  
+
+   
+
+
+
+
 

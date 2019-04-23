@@ -7,7 +7,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CurrencyRatesProvider } from '../providers/currency-rates/currency-rates';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
@@ -17,6 +17,7 @@ import { CurrencyRatesProvider } from '../providers/currency-rates/currency-rate
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    HttpClientModule,
    
   ],
   bootstrap: [IonicApp],

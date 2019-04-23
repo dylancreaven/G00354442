@@ -1,46 +1,32 @@
-
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Converter</ion-title>
+    <ion-title text-center>Rates</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Changing from</ion-label>
-      <ion-select [(ngModel)]="changingFrom">
-        <ion-option value="euro" checked="true">Euro</ion-option>
-        <ion-option value="usd">US Dollars</ion-option>
-        <ion-option value="gbp">British Sterling</ion-option>
-        <ion-option value="skr">Swedish krona</ion-option>
-        <ion-option value="aud">Austrailian Dollars</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item>
-      <ion-label>Changing to</ion-label>
-      <ion-select [(ngModel)]="changingTo">
-        <ion-option value="euro">Euro</ion-option>
-        <ion-option value="usd">US Dollars</ion-option>
-        <ion-option value="gbp">British Sterling</ion-option>
-        <ion-option value="skr">Swedish krona</ion-option>
-        <ion-option value="aud">Austrailian Dollars</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <!--<button ion-button large (click)="onSave()">Save</button>-->
-  <h2>You are changing from {{changingFrom}} to {{changingTo}}</h2>
 
-  <ion-list>
 
-    <ion-item>
-      <ion-input type="text" placeholder="{{changingFrom}}"></ion-input>
-    </ion-item>
-    <button ion-button color=secondary>Convert</button>
-    <h2>X in {{changingFrom}} is Y in {{changingTo}}</h2>
-  
-  </ion-list>
-      
+
+<ion-content text-center>
+    <ion-list >
+        <ion-item>
+          <ion-label>Currency</ion-label>
+          <ion-select [(ngModel)]="currency">
+            <ion-option value="usd">United States Dollars</ion-option>
+            <ion-option value="sek">Swedish Krona</ion-option>
+            <ion-option value="aud">Austrailian Dollars</ion-option>
+            <ion-option value="rub">Russian Rubles</ion-option>
+            <ion-option value="cad">Canadian Dollars</ion-option>
+            <ion-option value="gbp">British Sterling</ion-option>
+            <ion-option value="jpy">Japanese Yen</ion-option>
+
+          </ion-select>
+        </ion-item>
+      </ion-list>
+  <div [hidden]="hidden">
+    <label>Euro To {{changingTo}} </label>
+    <h2>Euro: 1 {{changingTo}}: {{amount}}</h2>
+  </div>
+<button ion-button large color="secondary" (click)="onConvert()">Rates</button>
+
 </ion-content>

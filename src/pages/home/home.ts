@@ -10,7 +10,7 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
-  goToCurrencyConverter(){
+  goToRates(){
     this.navCtrl.push("ConverterPage");
 
   }
