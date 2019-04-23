@@ -59,7 +59,7 @@ export class ConverterPage
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
         {
           this.storage.set("changingTo",this.changingTo);
-          this.changingTo="Great British Sterling";
+          this.changingTo="British Sterling";
           this.amount=info.rates.GBP;
           console.log(this.currency);
     
