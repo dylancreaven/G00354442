@@ -26,7 +26,20 @@
   <div [hidden]="hidden">
     <label>Euro To {{changingTo}} </label>
     <h2>Euro: 1 {{changingTo}}: {{amount}}</h2>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Amount</ion-label>
+        <ion-input [(ngModel)]="conversion" type="number" value=""></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button small color=danger (click)="onConvert()">Convert</button>
   </div>
-<button ion-button large color="secondary" (click)="onConvert()">Rates</button>
+  <div [hidden]="hidden2">
+    <h2>
+      Amount is {{answer}} in {{changingTo}}
+    </h2>
+
+  </div>
+<button ion-button large color="primary" (click)="onSave()">Rates</button>
 
 </ion-content>
