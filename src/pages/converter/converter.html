@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Rates</ion-title>
+    <ion-title text-center>Rates & Conversion Calculator</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,31 +15,38 @@
             <ion-option value="usd">United States Dollars</ion-option>
             <ion-option value="sek">Swedish Krona</ion-option>
             <ion-option value="aud">Austrailian Dollars</ion-option>
+            <ion-option value="cny">Chinese Yuan</ion-option>
             <ion-option value="rub">Russian Rubles</ion-option>
+            <ion-option value="dkk">Danish Krone</ion-option>
             <ion-option value="cad">Canadian Dollars</ion-option>
             <ion-option value="gbp">British Sterling</ion-option>
             <ion-option value="jpy">Japanese Yen</ion-option>
+            <ion-option value="chf">Swiss Franc</ion-option>
 
           </ion-select>
         </ion-item>
       </ion-list>
   <div [hidden]="hidden">
-    <label>Euro To {{changingTo}} </label>
+    
     <h2>Euro: 1 {{changingTo}}: {{amount}}</h2>
     <ion-list>
       <ion-item>
         <ion-label fixed>Amount</ion-label>
-        <ion-input [(ngModel)]="conversion" type="number" value=""></ion-input>
+        <ion-input [(ngModel)]="conversion" type="number" value=""></ion-input> <!--Input for the amount to convert-->
       </ion-item>
     </ion-list>
-    <button ion-button small color=danger (click)="onConvert()">Convert</button>
+  </div>
+  <div>
+      
+    <button [hidden]="hidden"  ion-button large color=danger (click)="onConvert()">Convert</button>
+    <button  ion-button large color="primary" (click)="onSave()">Change Currency</button>
   </div>
   <div [hidden]="hidden2">
-    <h2>
-      Amount is {{answer}} in {{changingTo}}
+    <h2 [hidden]="hiddenAnswer">
+      Amount is {{symbol}}{{answer}} in {{changingTo}}
     </h2>
 
   </div>
-<button ion-button large color="primary" (click)="onSave()">Rates</button>
+
 
 </ion-content>
