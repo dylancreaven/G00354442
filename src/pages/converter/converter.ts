@@ -177,6 +177,20 @@ export class ConverterPage
         this.changingTo="Chinese Yuan";
         console.log(this.currency);
       }
+      else if(this.currency=="pln")
+      {
+        this.hidden=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+          
+          this.amount=info.rates.PLN;
+         
+    
+        })
+        this.storage.set("changingTo",this.changingTo);
+        this.changingTo="Polish Zlotky";
+        console.log(this.currency);
+      }
       
     }
     onConvert(){
@@ -310,6 +324,18 @@ export class ConverterPage
     
         })
         this.symbol="¥";
+      }
+      else if(this.currency=="pln")
+      {
+        this.hidden2=false;
+          this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
+        {
+         
+          this.answer=this.conversion*info.rates.PLN;
+          console.log("1 Euro is "+this.answer+" in "+this.changingTo)
+    
+        })
+        this.symbol="zł";
       }
       
     
