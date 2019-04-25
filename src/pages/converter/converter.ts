@@ -17,8 +17,8 @@ export class ConverterPage
  symbol:any;
  answer:number=0;
  conversion:number=0;
+ //hidden variables are to make the webpage show itself as i plan it to. So it doesnt all pop up at once
  hidden:boolean=true;
- hiddenAnswer:boolean=true;
  hidden2:boolean=true;
  changingTo:string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private currencyRatesProvider: CurrencyRatesProvider) {
@@ -29,15 +29,15 @@ export class ConverterPage
     
     }
   
-    onSave()
+    onSave()//onSave() method saves the currency chosen and shows the rates of that currency to the screen
     {
       //so these two values are defaulted back to 0 everytime you change currency
       this.answer=0;
       this.conversion=0;
-     this.hiddenAnswer=true;
+     this.hidden2=true;
       
       
-      if(this.currency=="usd")
+      if(this.currency=="usd")//United States Dollars
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -51,7 +51,7 @@ export class ConverterPage
         this.changingTo="United States Dollars";
         console.log(this.currency);
       }
-      else if(this.currency=="sek")
+      else if(this.currency=="sek")//Swedish krona
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -65,7 +65,7 @@ export class ConverterPage
         this.changingTo="Swedish Krona";
         console.log(this.currency);
       }
-      else if(this.currency=="gbp")
+      else if(this.currency=="gbp")//British Sterling
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -79,7 +79,7 @@ export class ConverterPage
           this.changingTo="British Sterling";
           console.log(this.currency);
       }
-      else if(this.currency=="rub")
+      else if(this.currency=="rub")//Russian Rubles
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -93,7 +93,7 @@ export class ConverterPage
           this.changingTo="Russian Rubles";
           console.log(this.currency);
       }
-      else if(this.currency=="aud")
+      else if(this.currency=="aud")//Austrailian Dollars
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -107,7 +107,7 @@ export class ConverterPage
         this.changingTo="Austrailian Dollars";
         console.log(this.currency);
       }
-      else if(this.currency=="cad")
+      else if(this.currency=="cad")//Canadian Dollars
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -121,7 +121,7 @@ export class ConverterPage
           this.changingTo="Canadian Dollars";
           console.log(this.currency);
       }
-      else if(this.currency=="jpy")
+      else if(this.currency=="jpy")//Japanese yen
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -135,7 +135,7 @@ export class ConverterPage
         this.changingTo="Japanese Yen";
         console.log(this.currency);
       }
-      else if(this.currency=="dkk")
+      else if(this.currency=="dkk")//Danish krone
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -149,7 +149,7 @@ export class ConverterPage
           this.changingTo="Danish Krone";
         console.log(this.currency);
       }
-      else if(this.currency=="chf")
+      else if(this.currency=="chf")//Swiss Franc
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -163,7 +163,7 @@ export class ConverterPage
          this.changingTo="Swiss Franc";
         console.log(this.currency);
       }
-      else if(this.currency=="cny")
+      else if(this.currency=="cny")//Chinese Yuan
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -177,7 +177,7 @@ export class ConverterPage
         this.changingTo="Chinese Yuan";
         console.log(this.currency);
       }
-      else if(this.currency=="pln")
+      else if(this.currency=="pln")// Polish Zloty
       {
         this.hidden=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
@@ -188,14 +188,15 @@ export class ConverterPage
     
         })
         this.storage.set("changingTo",this.changingTo);
-        this.changingTo="Polish Zlotky";
+        this.changingTo="Polish Zloty";
         console.log(this.currency);
       }
       
     }
-    onConvert(){
+    onConvert(){//onConvert() saves value of input box (in euro) and converts it to the chosen currency
+      //onConvert() uses the same currencies as commented above
       
-      this.hiddenAnswer=false;
+      this.hidden2=false;
       this.storage.set("conversion",this.conversion);
       if(this.currency=="usd")
       {
@@ -228,7 +229,6 @@ export class ConverterPage
         this.hidden2=false;
           this.currencyRatesProvider.GetCurrencyData().subscribe((info)=>
         {
-         
           this.answer=this.conversion*info.rates.CHF;
           console.log("1 Euro is "+this.answer+" in "+this.changingTo)
          

@@ -26,8 +26,8 @@
           </ion-select>
         </ion-item>
       </ion-list>
+
   <div [hidden]="hidden">
-    
     <h2>Euro: 1 {{changingTo}}: {{amount}}</h2>
     <ion-list>
       <ion-item>
@@ -36,16 +36,16 @@
       </ion-item>
     </ion-list>
   </div>
-  <div>
-      
+
+  <div>  
     <button [hidden]="hidden"  ion-button large color=danger (click)="onConvert()">Convert</button>
     <button  ion-button large color="primary" (click)="onSave()">Change Currency</button>
   </div>
+
   <div [hidden]="hidden2">
-    <h2 [hidden]="hiddenAnswer">
+    <h2 >
       Amount is {{symbol}}{{answer}} in {{changingTo}}
     </h2>
-
   </div>
 
 
